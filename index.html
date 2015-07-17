@@ -3,7 +3,7 @@
 <title>words and the company they keep</title>
 <style>
 
-// borrowing heavily from http://bl.ocks.org/mbostock/3681006
+
 
 .overlay {
   fill: none;
@@ -12,9 +12,10 @@
 
 </style>
 <body>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script>
-
+// borrowing heavily from http://bl.ocks.org/mbostock/3681006  
 var width = 800,
     height = 800;
 
@@ -53,7 +54,7 @@ function draw() {
     d = data[i];
     cx = x(d[0]);
     cy = y(d[1]);
-    canvas.moveTo(cx, cy);
+    //canvas.moveTo(cx, cy);
     canvas.strokeText(d[2],cx, cy);
   }
   canvas.fill();
