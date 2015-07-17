@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>Zoom + Pan</title>
+<title>words and the company they keep</title>
 <style>
 
 .overlay {
@@ -19,7 +19,7 @@ var width = 800,
 var data = []
 d3.csv("https://raw.githubusercontent.com/mjmaenner/rwmm/gh-pages/words_sne.csv", function(datas) {
    data = datas.map(function(d) { return [ +d["X1"], +d["X2"], d["label"] ]; });
-   console.log(data)
+   draw()
 });
 
 
