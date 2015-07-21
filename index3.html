@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>words and the company they keep</title>
+<style>
+
+
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+</style>
+<body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src ="https://rawgit.com/d3/d3-plugins/master/cubehelix/cubehelix.js"></script>
+
+<script>
+// borrowing heavily from http://bl.ocks.org/mbostock/3681006  
+var width = 800,
+    height = 800;
+
+var data = []
+d3.csv("https://raw.githubusercontent.com/mjmaenner/rwmm/gh-pages/words_sne2.csv", function(datas) {
+   data = datas.map(function(d) { return [ +d["X1"], +d["X2"], d["label"], +d["cluster"], +d["clusternorm"] ]; });
+   draw()
+});
+
+var cubehelixscale = d3.scale.cubehelix()
+        .domain([0, .5, 1])
+        .range([
+          d3.hsl(-100, 0.75, 0.35),
+          d3.hsl(  80, 1.50, 0.80),
+          d3.hsl( 260, 0.75, 0.35)
+        ])
+
+var x = d3.scale.linear()
+    .domain([-34, 34])
+    .range([0, width]);
+
+var y = d3.scale.linear()
+     .domain([-34, 34])
+    .range([0, height]);
+
+var canvas = d3.select("body").append("canvas")
+    .attr("width", width)
+    .attr("height", height)
+    .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1, 256]).on("zoom", zoom))
+  .node().getContext("2d");
+
+draw();
+
+function zoom() {
+  canvas.clearRect(0, 0, width, height);
+  draw();
+}
+
+function draw() {
+  var i = -1, n = data.length, d, cx, cy;
+  canvas.beginPath();
+  while (++i < n) {
+    d = data[i];
+    cx = x(d[0]);
+    cy = y(d[1]);
+    colr = cubehelixscale(d[4]);
+    //canvas.moveTo(cx, cy);
+    canvas.font = "20px Arial"
+    canvas.strokeStyle = colr;
+    canvas.fillStyle(d[2],cx, cy);
+  }
+  canvas.fill();
+}
+
+</script>
