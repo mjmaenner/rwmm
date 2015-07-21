@@ -46,7 +46,7 @@ var y = d3.scale.linear()
 var canvas = d3.select("body").append("canvas")
     .attr("width", width)
     .attr("height", height)
-    .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1, 128]).on("zoom", zoom))
+    .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1, 256]).on("zoom", zoom))
   .node().getContext("2d");
 
 draw();
@@ -65,8 +65,9 @@ function draw() {
     cy = y(d[1]);
     colr = cubehelixscale(d[4]);
     //canvas.moveTo(cx, cy);
-    canvas.strokeStyle = colr;
-    canvas.strokeText(d[2],cx, cy);
+    canvas.font = "20px Arial"
+    canvas.fillStyle = colr;
+    canvas.fillText(d[2],cx, cy);
   }
   canvas.fill();
 }
