@@ -65,7 +65,7 @@ function draw() {
     cy = y(d[1]);
     colr = cubehelixscale(d[4]);
     //canvas.moveTo(cx, cy);
-    canvas.font = "12px Arial"
+    // canvas.font = "12px Arial" // font size kills performance
     canvas.strokeStyle = colr;
     canvas.strokeText(d[2],cx, cy);
   }
