@@ -66,8 +66,8 @@ function draw() {
     colr = cubehelixscale(d[4]);
     //canvas.moveTo(cx, cy);
     canvas.font = "14px Arial"
-    canvas.fillStyle = colr;
-    canvas.fillText(d[2],cx, cy);
+    canvas.strokeStyle = colr;
+    canvas.strokeText(d[2],cx, cy);
   }
   canvas.fill();
 }
