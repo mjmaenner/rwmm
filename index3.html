@@ -22,7 +22,7 @@ var width = 600,
     height = 600;
 
 var data = []
-d3.csv("https://raw.githubusercontent.com/mjmaenner/rwmm/gh-pages/words_sne2.csv", function(datas) {
+d3.csv("https://cdn.rawgit.com/mjmaenner/rwmm/gh-pages/words_sne2.csv", function(datas) {
    data = datas.map(function(d) { return [ +d["X1"], +d["X2"], d["label"], +d["cluster"], +d["clusternorm"] ]; });
    draw()
 });
